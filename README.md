@@ -1,4 +1,4 @@
-# React Material-UI Dashboard
+# React Firebase Dashboard
 
 Simple React App that showcasing how you can implement Google Sign-in method using firebase authentication. This App is built with React Hooks and Context API and used free [Material-UI](https://material-ui.com/getting-started/templates/) starter [Sign-in side](https://material-ui.com/getting-started/templates/sign-in-side/) combined with [Dashboard](https://material-ui.com/getting-started/templates/dashboard/) templates.
 
