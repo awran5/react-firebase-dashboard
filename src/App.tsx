@@ -1,16 +1,16 @@
-import React, { useContext } from 'react'
-import { AppContext } from './Context'
+import React from 'react'
+import { CssBaseline } from '@material-ui/core'
 import { useAuthState } from 'react-firebase-hooks/auth'
-
 import CircularProgress from '@material-ui/core/CircularProgress'
+
 import SignIn from './Components/SignIn'
 import Dashboard from './Components/Dashboard'
 
+import { auth } from './Firebase'
 import './App.css'
 
 const App = () => {
-  const { Auth } = useContext(AppContext)
-  const [user, loading, error] = useAuthState(Auth)
+  const [user, loading, error] = useAuthState(auth)
   if (error) return <h1>Error: {error}</h1>
   if (loading)
     return (
@@ -19,7 +19,12 @@ const App = () => {
       </div>
     )
 
-  return <div className='App'>{user ? <Dashboard /> : <SignIn />}</div>
+  return (
+    <div className='App'>
+      <CssBaseline />
+      {user ? <Dashboard /> : <SignIn />}
+    </div>
+  )
 }
 
 export default App

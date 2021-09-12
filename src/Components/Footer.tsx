@@ -10,7 +10,6 @@ const Footer: FC<{}> = () => {
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   )
 }

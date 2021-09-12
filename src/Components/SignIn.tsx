@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { AppContext } from '../Context'
+import React, { useState } from 'react'
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -10,97 +10,78 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import SvgIcon from '@material-ui/core/SvgIcon'
+
+import { auth } from '../Firebase'
 import Footer from './Footer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: '100vh'
   },
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
     backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundPosition: 'center'
   },
   paper: {
     margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: '#fff',
     width: theme.spacing(6),
-    height: theme.spacing(6),
+    height: theme.spacing(6)
   },
   svg: {
     width: '100%',
-    height: '100%',
+    height: '100%'
   },
   title: {
-    margin: theme.spacing(1, 0, 3),
+    margin: theme.spacing(1, 0, 3)
   },
   card: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: 'center'
   },
   button: {
     margin: theme.spacing(1),
     height: theme.spacing(7),
     fontSize: '14px',
-    textTransform: 'capitalize',
-  },
+    textTransform: 'capitalize'
+  }
 }))
 
 export default function SignInSide() {
   const classes = useStyles()
 
-  const { firebase, cloudRef, Auth } = useContext(AppContext)
   const [signInError, setSignInError] = useState('')
 
-  const addUserToFirestore = async (result: any) => {
-    // Check if new user
-    if (!result || !result.additionalUserInfo.isNewUser) return
-
-    const { displayName, email, photoURL, uid } = result.user
-    await cloudRef('users')
-      .add({
-        displayName,
-        photoURL,
-        id: uid,
-        email,
-        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
-      })
-      .then(() => {
-        console.log('User added to database')
-      })
-      .catch((error) => {
-        console.log('error adding user to the database', error)
-      })
-  }
-
   const handleLogin = () => {
-    const provider = new firebase.auth.GoogleAuthProvider()
+    const provider = new GoogleAuthProvider()
 
-    Auth.signInWithPopup(provider)
-      .then((result) => {
+    signInWithPopup(auth, provider)
+      .then(async (result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        //const token = result.credential.accessToken
+        // const token = result.credential.accessToken
         // The signed-in user info.
         // console.log(result)
-        addUserToFirestore(result)
+
+        console.log(result)
       })
       .catch((error) => {
         // Handle Errors here.
-        //const errorCode = error.code
-        //const errorMessage = error.message
+        // const errorCode = error.code
+        // const errorMessage = error.message
         // The email of the user's account used.
-        //const email = error.email
+        // const email = error.email
         // The firebase.auth.AuthCredential type that was used.
-        //const credential = error.credential
+        // const credential = error.credential
         // ...
         setSignInError(error.message)
         console.log(error)
@@ -154,7 +135,7 @@ export default function SignInSide() {
             >
               Sign in with your Google Account
             </Button>
-            {signInError !== '' && (
+            {signInError && (
               <Typography color='error' variant='subtitle1'>
                 {signInError}
               </Typography>

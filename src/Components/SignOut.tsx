@@ -1,27 +1,28 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../Context'
+import React from 'react'
+import { signOut } from 'firebase/auth'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
+import { auth } from '../Firebase'
 
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1, 2),
     borderColor: '#fff',
-    color: '#fff',
-  },
+    color: '#fff'
+  }
 }))
 
 export default function SignOut() {
   const classes = useStyles()
-  const { Auth } = useContext(AppContext)
 
   const handleLogout = () => {
-    Auth.signOut()
+    signOut(auth)
       .then(() => {
         // Sign-out successful.
       })
-      .catch((error) => {
+      .catch((err) => {
         // Error happened.
+        console.log(err)
       })
   }
 
