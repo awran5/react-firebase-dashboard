@@ -28,6 +28,15 @@ Simple React App that showcasing how you can implement Google Sign-in method usi
 
 ## Changelog
 
+#### 12/09/2021
+
+- Updated: firebase 9
+- Updated: All dependencies
+- Added: eslint airbnb config
+- Removed: React Context
+- Removed: option to add users to cloud firesote
+- Clean up code and minor bug fixed.
+
 #### 11/16/2020
 
 - Convert to TypeScript
