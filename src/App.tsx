@@ -12,7 +12,7 @@ import './App.css'
 const App = () => {
   const [user, loading, error] = useAuthState(auth)
   if (error) return <h1>Error: {error}</h1>
-  if (!loading)
+  if (loading)
     return (
       <div className='loading'>
         <CircularProgress size={60} />
