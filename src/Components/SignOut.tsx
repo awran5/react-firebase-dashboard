@@ -1,20 +1,9 @@
 import React from 'react'
 import { signOut } from 'firebase/auth'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
+import Button from '@mui/material/Button'
 import { auth } from '../Firebase'
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1, 2),
-    borderColor: '#fff',
-    color: '#fff'
-  }
-}))
-
 export default function SignOut() {
-  const classes = useStyles()
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -27,7 +16,7 @@ export default function SignOut() {
   }
 
   return (
-    <Button onClick={handleLogout} variant='outlined' className={classes.button}>
+    <Button onClick={handleLogout} variant='outlined' sx={{ borderColor: '#fff', color: '#fff', margin: 1 }}>
       Logout
     </Button>
   )

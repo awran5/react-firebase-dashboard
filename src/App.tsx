@@ -1,7 +1,7 @@
 import React from 'react'
-import { CssBaseline } from '@material-ui/core'
+import { CssBaseline } from '@mui/material'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress from '@mui/material/CircularProgress'
 
 import SignIn from './Components/SignIn'
 import Dashboard from './Components/Dashboard'
@@ -12,7 +12,7 @@ import './App.css'
 const App = () => {
   const [user, loading, error] = useAuthState(auth)
   if (error) return <h1>Error: {error}</h1>
-  if (loading)
+  if (!loading)
     return (
       <div className='loading'>
         <CircularProgress size={60} />

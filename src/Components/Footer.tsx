@@ -1,17 +1,15 @@
-import React, { FC, memo } from 'react'
-import Link from '@material-ui/core/Link'
-import Typography from '@material-ui/core/Typography'
+import React from 'react'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
 
-const Footer: FC<{}> = () => {
+export default function Footer() {
   return (
-    <Typography variant='body2' color='textSecondary' align='center'>
+    <Typography variant='body2' color='text.secondary' align='center' sx={{ pt: 4 }}>
       {'Copyright © '}
-      <Link color='inherit' href='/'>
+      <Link color='inherit' href='https://material-ui.com/'>
         Your Website
       </Link>{' '}
-      {new Date().getFullYear()}
+      {new Date().getFullYear()}.
     </Typography>
   )
 }
-
-export default memo(Footer)

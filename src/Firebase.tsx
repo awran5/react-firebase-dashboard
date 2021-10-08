@@ -12,6 +12,6 @@ export const app = initializeApp({
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_APP_MEASUREMENT_ID
 })
-export const APP_COLLECTION = 'users'
+// export const APP_COLLECTION = 'users'
 export const auth = getAuth(app)
 export const firestore = getFirestore(app)

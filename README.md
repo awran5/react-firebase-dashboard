@@ -28,22 +28,27 @@ Simple React App that showcasing how you can implement Google Sign-in method usi
 
 ## Changelog
 
+#### 10/08/2021
+
+- Update: MUI 5
+- Update: dependencies
+
 #### 12/09/2021
 
-- Updated: firebase 9
-- Updated: All dependencies
-- Added: eslint airbnb config
-- Removed: React Context
-- Removed: option to add users to cloud firesote
+- Update: firebase 9
+- Update: All dependencies
+- Add: eslint airbnb config
+- Remove: React Context
+- Remove: option to add users to cloud firesote
 - Clean up code and minor bug fixed.
 
 #### 11/16/2020
 
-- Convert to TypeScript
-- Added: Error message when sign-in
-- Added: Timestamp for newly created users
-- Dependencies upgraded
-- Minor bug fixed
+- Refactor code to TypeScript
+- Add: Error message when sign-in
+- Add: Timestamp for newly created users
+- Update: Dependencies
+- fix: Minor bugs
 
 ## [Live example](https://react-firebase-dashboard.vercel.app/)
 
